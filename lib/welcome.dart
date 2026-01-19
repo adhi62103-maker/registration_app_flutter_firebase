@@ -1,3 +1,5 @@
+import 'package:firebase_example/login.dart';
+import 'package:firebase_example/signup.dart';
 import 'package:flutter/material.dart';
 
 class Welcome extends StatelessWidget {
@@ -15,17 +17,22 @@ class Welcome extends StatelessWidget {
               heightFactor: 5,
               child: Text(
                 "WELCOME",
-                style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
               ),
             ),
             SizedBox(height: 100),
-            Image.asset("assets/images.jpeg",),
+            Image.asset("assets/images.jpeg"),
             SizedBox(height: 75),
             SizedBox(
               height: 70,
               width: 350,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Login()),
+                  );
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
@@ -52,7 +59,12 @@ class Welcome extends StatelessWidget {
                   backgroundColor: Colors.blue,
                   side: BorderSide(color: Colors.black),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SignUp()),
+                  );
+                },
                 child: Text(
                   "Sign Up",
                   style: TextStyle(

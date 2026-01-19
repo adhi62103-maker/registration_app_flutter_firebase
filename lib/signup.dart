@@ -1,13 +1,24 @@
+import 'package:firebase_example/login.dart';
+import 'package:firebase_example/services.dart';
 import 'package:flutter/material.dart';
 
-class SignUp extends StatelessWidget {
+class SignUp extends StatefulWidget {
   const SignUp({super.key});
 
+  @override
+  State<SignUp> createState() => _SignUpState();
+}
+
+class _SignUpState extends State<SignUp> {
+  TextEditingController namecontroller = TextEditingController();
+  TextEditingController emailcontroller = TextEditingController();
+  TextEditingController passwordcontroller = TextEditingController();
+  TextEditingController confirmpasswordcontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body:Container(
+      body: Container(
         child: Column(
           children: [
             SizedBox(height: 70),
@@ -33,6 +44,7 @@ class SignUp extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextField(
+                controller: namecontroller,
                 decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.black),
@@ -53,6 +65,7 @@ class SignUp extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextField(
+                controller: emailcontroller,
                 decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(),
                   focusedBorder: OutlineInputBorder(),
@@ -69,6 +82,7 @@ class SignUp extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextField(
+                controller: passwordcontroller,
                 decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(),
                   focusedBorder: OutlineInputBorder(),
@@ -85,6 +99,7 @@ class SignUp extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextField(
+                controller: confirmpasswordcontroller,
                 decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(),
                   focusedBorder: OutlineInputBorder(),
@@ -103,7 +118,15 @@ class SignUp extends StatelessWidget {
                     borderRadius: BorderRadiusGeometry.circular(40),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  register(
+                    username: namecontroller.text,
+                    email: emailcontroller.text,
+                    password: passwordcontroller.text,
+                    confirmpassword: confirmpasswordcontroller.text,
+                    context: context,
+                  );
+                },
                 child: Text(
                   "Sign Up",
                   style: TextStyle(
@@ -116,20 +139,23 @@ class SignUp extends StatelessWidget {
             ),
             SizedBox(height: 30),
             Row(
-              children: [SizedBox(width:95,),
-                Text("Already have an account?"),
-                Text(
-                  "Login",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
+              children: [
+                SizedBox(width: 95),
+                Text("Already have an account?"),SizedBox(width: 3,),
+                GestureDetector(onTap: () => Login(),
+                  child: Text(
+                    "Login",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ],
             ),
           ],
         ),
-      )
+      ),
     );
   }
 }
